@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rep. John Garamendi — CA-08 Interview Prep</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --blue: #1a4b8c;
+    --blue-light: #2563a8;
+    --blue-pale: #e8f0fb;
+    --gold: #c8952a;
+    --gold-light: #f5e8c8;
+    --red: #b91c1c;
+    --green: #166534;
+    --green-light: #d1fae5;
+    --gray-dark: #1f2937;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --white: #ffffff;
+    --border: #e5e7eb;
+    --shadow: 0 2px 12px rgba(0,0,0,0.10);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--gray-light);
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--blue) 0%, #0d3166 100%);
+    color: white;
+    padding: 28px 32px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .header-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, #e8a830 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; font-weight: 900; color: white;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+  }
+  .header-text h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+  .header-text h2 { font-size: 15px; font-weight: 400; opacity: 0.85; margin-top: 2px; }
+  .header-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 12px; font-weight: 600;
+  }
+  .badge.gold { background: var(--gold); border-color: var(--gold); }
+  .badge.alert { background: rgba(185,28,28,0.8); border-color: #ef4444; }
+  .interview-note {
+    margin-left: auto; background: var(--gold);
+    color: white; padding: 10px 18px; border-radius: 10px;
+    font-size: 13px; font-weight: 700; text-align: center;
+    flex-shrink: 0; line-height: 1.4;
+  }
+
+  /* NAV TABS */
+  nav {
+    background: white;
+    display: flex; flex-wrap: wrap;
+    padding: 0 24px;
+    border-bottom: 2px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  nav button {
+    border: none; background: none;
+    padding: 14px 16px; cursor: pointer;
+    font-size: 13px; font-weight: 600;
+    color: var(--gray);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  nav button:hover { color: var(--blue); }
+  nav button.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+  /* LAYOUT */
+  main { max-width: 1200px; margin: 0 auto; padding: 24px 20px 60px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: white; border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 17px; font-weight: 700; color: var(--blue);
+    margin-bottom: 16px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--blue-pale);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title .icon { font-size: 20px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* STAT BOXES */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-box {
+    background: var(--blue-pale); border-radius: 10px;
+    padding: 16px; text-align: center;
+  }
+  .stat-box .num { font-size: 28px; font-weight: 800; color: var(--blue); }
+  .stat-box .lbl { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 3px; background: var(--blue-pale); border-radius: 2px;
+  }
+  .tl-item { position: relative; margin-bottom: 18px; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -24px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--blue); border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--blue);
+  }
+  .tl-item .tl-year { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; }
+  .tl-item .tl-text { font-size: 14px; color: var(--gray-dark); }
+
+  /* POLICY PILLS */
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .pill {
+    padding: 5px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: 600;
+  }
+  .pill.blue { background: var(--blue-pale); color: var(--blue); }
+  .pill.green { background: var(--green-light); color: var(--green); }
+  .pill.gold { background: var(--gold-light); color: #92670f; }
+  .pill.red { background: #fee2e2; color: var(--red); }
+  .pill.gray { background: var(--gray-light); color: var(--gray); }
+
+  /* ACCORDION */
+  .accordion-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .accordion-btn {
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 14px 18px; text-align: left;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14px; font-weight: 600; color: var(--gray-dark);
+    transition: background 0.2s;
+  }
+  .accordion-btn:hover { background: var(--gray-light); }
+  .accordion-btn.open { background: var(--blue-pale); color: var(--blue); }
+  .accordion-btn .chevron { transition: transform 0.2s; font-size: 16px; }
+  .accordion-btn.open .chevron { transform: rotate(180deg); }
+  .accordion-body { display: none; padding: 16px 18px; background: white; border-top: 1px solid var(--border); }
+  .accordion-body.open { display: block; }
+  .accordion-body p, .accordion-body li { font-size: 14px; color: var(--gray-dark); line-height: 1.7; }
+  .accordion-body ul { padding-left: 20px; }
+  .accordion-body li { margin-bottom: 4px; }
+
+  /* CITY CARDS */
+  .city-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .city-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); transform: translateY(-2px); }
+  .city-header {
+    padding: 14px 16px;
+    color: white; font-weight: 700; font-size: 15px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .city-body { padding: 14px 16px; background: white; display: none; }
+  .city-body.open { display: block; }
+  .city-body p { font-size: 13px; line-height: 1.6; margin-bottom: 8px; }
+  .city-body strong { color: var(--blue); }
+  .city-stat { font-size: 12px; color: var(--gray); margin-bottom: 4px; }
+  .city-concern {
+    background: var(--blue-pale); border-radius: 6px;
+    padding: 8px 12px; margin-top: 10px;
+    font-size: 12px; color: var(--blue); font-weight: 600;
+  }
+  .city-concern::before { content: "🎯 Top voter concerns: "; }
+
+  /* CHART CONTAINERS */
+  .chart-wrap { position: relative; height: 260px; }
+
+  /* FUNDING TABLE */
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--blue); color: white; padding: 10px 12px; font-size: 12px; text-align: left; }
+  td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: var(--blue-pale); }
+  .amt { font-weight: 700; color: var(--green); white-space: nowrap; }
+
+  /* DIVERGENCE METER */
+  .meter-row { margin-bottom: 14px; }
+  .meter-label { font-size: 13px; font-weight: 600; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .meter-track { height: 10px; background: var(--gray-light); border-radius: 5px; overflow: hidden; }
+  .meter-fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
+
+  /* CALL OUT BOXES */
+  .callout {
+    border-radius: 10px; padding: 14px 18px; margin-bottom: 16px;
+    border-left: 4px solid;
+  }
+  .callout.blue { background: var(--blue-pale); border-color: var(--blue); }
+  .callout.gold { background: var(--gold-light); border-color: var(--gold); }
+  .callout.red { background: #fee2e2; border-color: var(--red); }
+  .callout.green { background: var(--green-light); border-color: #16a34a; }
+  .callout p { font-size: 13px; line-height: 1.6; }
+  .callout strong { font-size: 13px; }
+
+  /* INTERVIEW TIPS */
+  .tip-card {
+    background: linear-gradient(135deg, #1a4b8c 0%, #0d3166 100%);
+    color: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px;
+  }
+  .tip-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--gold); }
+  .tip-card p, .tip-card li { font-size: 13px; line-height: 1.7; opacity: 0.92; }
+  .tip-card ul { padding-left: 18px; }
+
+  /* DISTRICT MAP VISUAL */
+  .district-visual {
+    background: linear-gradient(135deg, #e8f0fb 0%, #d1e3f8 100%);
+    border-radius: 12px; padding: 20px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .county-box {
+    background: white; border-radius: 10px; padding: 16px;
+    border: 2px solid var(--blue-pale);
+  }
+  .county-box h4 { color: var(--blue); font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+  .county-box .city-list { font-size: 13px; }
+  .county-box .city-list li { padding: 4px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+  /* SEARCH */
+  .search-box {
+    width: 100%; padding: 12px 16px;
+    border: 2px solid var(--border); border-radius: 8px;
+    font-size: 14px; margin-bottom: 16px;
+    outline: none; transition: border-color 0.2s;
+  }
+  .search-box:focus { border-color: var(--blue); }
+
+  /* TAGS */
+  .tag { display: inline-block; background: var(--gray-light); border-radius: 4px; padding: 2px 8px; font-size: 11px; color: var(--gray); margin: 2px; }
+
+  /* PROGRESS BARS for demo */
+  .demo-bar { margin-bottom: 10px; }
+  .demo-bar-label { font-size: 12px; display: flex; justify-content: space-between; margin-bottom: 3px; }
+  .demo-bar-track { height: 8px; background: var(--gray-light); border-radius: 4px; overflow: hidden; }
+  .demo-bar-fill { height: 100%; border-radius: 4px; }
+
+  /* NEWS ITEMS */
+  .news-item {
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-date { font-size: 11px; font-weight: 700; color: var(--gold); white-space: nowrap; padding-top: 2px; min-width: 70px; }
+  .news-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .news-content p { font-size: 13px; color: var(--gray); }
+
+  /* TOOLTIP */
+  [data-tip] { position: relative; cursor: help; }
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute; bottom: 120%; left: 0;
+    background: var(--gray-dark); color: white;
+    padding: 6px 10px; border-radius: 6px;
+    font-size: 12px; white-space: nowrap; z-index: 999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  p { font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
+  ul { padding-left: 20px; }
+  li { font-size: 14px; margin-bottom: 5px; line-height: 1.6; }
+  h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  strong { font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-avatar">JG</div>
+  <div class="header-text">
+    <h1>Rep. John Garamendi</h1>
+    <h2>California's 8th Congressional District &nbsp;·&nbsp; Democrat &nbsp;·&nbsp; In Congress Since 2009</h2>
+    <div class="header-badges">
+      <span class="badge">Armed Services Committee</span>
+      <span class="badge">Transportation &amp; Infrastructure</span>
+      <span class="badge">D+24 District</span>
+      <span class="badge gold">Make It In America</span>
+      <span class="badge alert">⚕ Multiple Myeloma (2024)</span>
+    </div>
+  </div>
+  <div class="interview-note">📋 Interview Prep<br>Staff Assistant<br>CA-08</div>
+</header>
+
+<nav>
+  <button class="active" onclick="showTab('bio')">👤 Bio & Career</button>
+  <button onclick="showTab('district')">🗺 District Overview</button>
+  <button onclick="showTab('cities')">🏙 Cities &amp; Areas</button>
+  <button onclick="showTab('demographics')">📊 Demographics</button>
+  <button onclick="showTab('policy')">⚖️ Policy Positions</button>
+  <button onclick="showTab('legislation')">📜 Bills &amp; Funding</button>
+  <button onclick="showTab('news')">📰 In the News</button>
+  <button onclick="showTab('interview')">🎯 Interview Tips</button>
+</nav>
+
+<main>
+
+<!-- ===== BIO & CAREER ===== -->
+<div id="bio" class="section active">
+  <div class="stat-grid">
+    <div class="stat-box"><div class="num">80</div><div class="lbl">Years Old (Born Jan 24, 1945)</div></div>
+    <div class="stat-box"><div class="num">16+</div><div class="lbl">Years in Congress</div></div>
+    <div class="stat-box"><div class="num">50+</div><div class="lbl">Years in Public Service</div></div>
+    <div class="stat-box"><div class="num">D+24</div><div class="lbl">Cook PVI (Safe Dem)</div></div>
+    <div class="stat-box"><div class="num">6</div><div class="lbl">Children, 13 Grandchildren</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">📖</span> Career Timeline</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-year">1966–68</div><div class="tl-text">Peace Corps volunteer in Ethiopia — a formative experience he often references</div></div>
+        <div class="tl-item"><div class="tl-year">1974–90</div><div class="tl-text">California State Assembly then Senate; served as Senate Majority Leader</div></div>
+        <div class="tl-item"><div class="tl-year">1991–95</div><div class="tl-text">First elected California Insurance Commissioner in state history</div></div>
+        <div class="tl-item"><div class="tl-year">1995–98</div><div class="tl-text">U.S. Deputy Secretary of the Interior under President Clinton</div></div>
+        <div class="tl-item"><div class="tl-year">2003–07</div><div class="tl-text">California Insurance Commissioner (second term)</div></div>
+        <div class="tl-item"><div class="tl-year">2007–09</div><div class="tl-text">California Lieutenant Governor (46th)</div></div>
+        <div class="tl-item"><div class="tl-year">2009–</div><div class="tl-text">U.S. House of Representatives — won special election replacing Ellen Tauscher; originally CA-10, moved to CA-08 after 2022 redistricting</div></div>
+        <div class="tl-item"><div class="tl-year">2024</div><div class="tl-text">Diagnosed with multiple myeloma (blood cancer); continuing treatment &amp; running for reelection in 2026</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title"><span class="icon">🎓</span> Education &amp; Background</div>
+        <ul>
+          <li><strong>B.A. Business</strong> — UC Berkeley</li>
+          <li><strong>MBA</strong> — Harvard Business School</li>
+          <li>Raised in Mokelumne Hill, CA (Calaveras County foothills)</li>
+          <li>Eagle Scout</li>
+          <li>Rancher and <strong>pear farmer</strong> in Walnut Grove (Sacramento-San Joaquin Delta)</li>
+          <li>Lives <em>outside</em> CA-08 boundaries — his farm is in Walnut Grove, Sacramento County</li>
+          <li>Married to Patricia Wilkinson; lifelong California public servant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="icon">🏛</span> Committee Assignments</div>
+        <div class="callout blue"><strong>Armed Services Committee</strong>
+        <p>Ranking Member, Subcommittee on Readiness (was Chair when Dems held majority)<br>Also: Subcommittee on Strategic Forces</p></div>
+        <div class="callout gold"><strong>Transportation &amp; Infrastructure Committee</strong>
+        <p>Subcommittees: Coast Guard &amp; Maritime Transportation · Highways &amp; Transit · Economic Development &amp; Public Buildings</p></div>
+        <div class="pill-group" style="margin-top:8px;">
+          <span class="pill blue">Peace Corps Caucus (Co-Chair)</span>
+          <span class="pill blue">Congressional Progressive Caucus</span>
+          <span class="pill blue">American Sikh Caucus (Co-Chair)</span>
+          <span class="pill blue">Ukraine Caucus</span>
+          <span class="pill blue">Blue Collar Caucus</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🧭</span> Who Is He, Really?</div>
+    <p>Garamendi is a <strong>blue-collar economic nationalist Democrat</strong> — not the coastal-progressive archetype, but not a centrist New Democrat either. His core identity is <em>"Make It In America"</em>: domestic manufacturing, the Jones Act, Buy America, and shipbuilding. He has the voting record of a progressive (Medicare for All, Green New Deal co-sponsor, 100% with Biden) but the political instincts of a union hall Democrat from an earlier era.</p>
+    <p>At 80, he's one of the most experienced members in Congress — decades in California state government before ever arriving in DC. He's a genuine agriculture guy who <em>actually farms</em> in the Delta and has personal skin in the water policy fights. His Armed Services role makes him a <strong>defense hawk focused on waste</strong>, not a dove — he opposes the Sentinel ICBM on fiscal grounds, not pacifism.</p>
+    <div class="callout gold"><strong>Key personality note:</strong> He is known for being verbose and passionate in committee hearings, often going long and getting animated. He genuinely cares about manufacturing and the Jones Act in a way that seems personal, not performative.</div>
+  </div>
+</div>
+
+<!-- ===== DISTRICT OVERVIEW ===== -->
+<div id="district" class="section">
+  <div class="callout blue"><strong>CA-08 was created by the 2022 redistricting</strong> — explicitly designed by California's independent redistricting commission to give communities of color a dominant voting bloc. It spans western Contra Costa County and most of Solano County, stretching from the industrial Bay Area waterfront through military/suburban communities to the Delta edge.</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">🗺</span> What's In the District</div>
+      <div class="district-visual">
+        <div class="county-box">
+          <h4>🏭 Contra Costa County (West)</h4>
+          <ul class="city-list">
+            <li><span class="dot" style="background:#1a4b8c"></span> Richmond (~116K)</li>
+            <li><span class="dot" style="background:#2563a8"></span> Antioch (~115K)</li>
+            <li><span class="dot" style="background:#3b82f6"></span> Pittsburg (~75K)</li>
+            <li><span class="dot" style="background:#60a5fa"></span> San Pablo (~32K)</li>
+            <li><span class="dot" style="background:#93c5fd"></span> El Cerrito (~27K)</li>
+            <li><span class="dot" style="background:#bfdbfe"></span> Hercules, Pinole, Benicia</li>
+          </ul>
+        </div>
+        <div class="county-box">
+          <h4>✈️ Solano County (Most)</h4>
+          <ul class="city-list">
+            <li><span class="dot" style="background:#c8952a"></span> Vallejo (~126K) — largest city</li>
+            <li><span class="dot" style="background:#d4a73a"></span> Fairfield (~124K) — Travis AFB</li>
+            <li><span class="dot" style="background:#e0b84a"></span> Vacaville (partial)</li>
+            <li><span class="dot" style="background:#ecc95a"></span> Suisun City (~29K)</li>
+            <li><span class="dot" style="background:#f8da6a"></span> Benicia (~28K)</li>
+            <li><span class="dot" style="background:#fde68a"></span> Green Valley, Elmira CDPs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">⚡</span> District Economic Anchors</div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">✈️ Travis Air Force Base — $3.7B Economic Impact <span class="chevron">▼</span></button>
+        <div class="accordion-body">
+          <p><strong>Single largest employer in Solano County.</strong> Located in Fairfield.</p>
+          <ul>
+            <li>26,000+ total workforce (7,200 active duty, 3,096 reservists, ~1,828 civilian, ~1,290 contracted)</li>
+            <li>FY2024 economic impact: <strong>$3.7 billion</strong> total</li>
+            <li>Generates 5,162 indirect jobs adding $252.6M/year to local economy</li>
+            <li>Largest air mobility wing in the entire Air Force — primary Pacific cargo/passenger hub</li>
+            <li>Garamendi protects Travis in every NDAA; it is politically untouchable in this district</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">⛽ Chevron Richmond Refinery — 24% of Richmond's Budget <span class="chevron">▼</span></button>
+        <div class="accordion-body">
+          <p><strong>Largest refinery in the Bay Area, operating since 1902.</strong></p>
+          <ul>
+            <li>3,800+ direct jobs; <strong>$1.1 billion annual GDP contribution</strong> to West Contra Costa</li>
+            <li>Supplies ~60% of jet fuel for Bay Area airports, ~20% of regional gasoline</li>
+            <li>Provides nearly <strong>24% of Richmond's general fund revenue</strong> — extraordinary fiscal dependency</li>
+            <li>Under existential threat: California energy transition + regulatory pressure; Chevron has signaled CA operations at risk</li>
+            <li><strong>Political tension:</strong> Richmond activists want cleaner air; the city can't afford to lose Chevron's tax dollars</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">🏥 Healthcare — Largest Employment Sector <span class="chevron">▼</span></button>
+        <div class="accordion-body">
+          <p>55,971 workers in Health Care &amp; Social Assistance district-wide — the #1 employment sector. Kaiser Permanente is a major employer across multiple cities. Significant medical facility presence in Vallejo (Touro University at Mare Island) and Fairfield.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">🚢 Mare Island — Former Naval Shipyard, Future? <span class="chevron">▼</span></button>
+        <div class="accordion-body">
+          <p>The Navy closed Mare Island Naval Shipyard in Vallejo in 1996 — devastating the local economy. It has since been redeveloped with 100+ businesses and 3,000+ workers. Touro University is located there.</p>
+          <p>Garamendi's SHIPS for America Act raises the prospect of returning shipbuilding to Mare Island — a powerful local jobs argument he uses often.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">🌾 Sacramento-San Joaquin Delta — Agriculture &amp; Water <span class="chevron">▼</span></button>
+        <div class="accordion-body">
+          <p>The Delta edge of the district produces pears, asparagus, wine grapes, almonds, and corn. Garamendi himself farms pears in Walnut Grove. District agricultural output ~$3 billion. The Delta Tunnel (formerly WaterFix) is the most galvanizing local water policy issue — Garamendi opposes it fiercely.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏗</span> District-Wide Challenges</div>
+    <div class="grid-3">
+      <div class="callout blue"><strong>Extreme Commutes</strong><p>35% of Antioch workers commute 90+ minutes round-trip to Bay Area jobs. The district is classic Bay Area bedroom community — people moved for cheaper housing but pay in time.</p></div>
+      <div class="callout red"><strong>Chevron Exit Risk</strong><p>If Chevron closes its Richmond refinery, Richmond loses 24% of its general fund overnight. An existential fiscal crisis that would require state intervention.</p></div>
+      <div class="callout gold"><strong>Vallejo's Post-Bankruptcy Fragility</strong><p>Filed Chapter 9 in 2008; still rebuilding. Pension obligations continue consuming large share of city budget. Crime rates 2x national average remain a defining challenge.</p></div>
+    </div>
+    <div class="grid-3">
+      <div class="callout blue"><strong>Housing Affordability</strong><p>The district is where Bay Area workers escape to for cheaper housing — but prices are rising fast and local wage growth lags.</p></div>
+      <div class="callout blue"><strong>Flood &amp; Levee Risk</strong><p>Delta communities face existential flood risk. Sacramento-San Joaquin levees are aging. Climate change increases storm surge risk.</p></div>
+      <div class="callout blue"><strong>Environmental Justice</strong><p>Richmond and San Pablo bear disproportionate pollution burdens from refinery operations. Air quality is a persistent community concern.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CITIES & AREAS ===== -->
+<div id="cities" class="section">
+  <p style="margin-bottom:16px; color:var(--gray);">Click any city card to expand details. Understanding each city is critical for the job — constituents will call about very different issues depending on where they're from.</p>
+
+  <div class="grid-2">
+
+    <!-- Vallejo -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #1a4b8c, #0d3166);">
+        <span>🏙 Vallejo <small style="font-weight:400;opacity:0.8;">(~126,000)</small></span>
+        <span style="font-size:12px;">Largest city in district ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>Character:</strong> The district's largest city — historically defined by Mare Island Naval Shipyard, now in a long arc of economic rebuilding after 2008 municipal bankruptcy (largest CA city to do so). Located on the Carquinez Strait at San Francisco Bay.</p>
+        <p><strong>Diversity:</strong> Large <strong>Filipino-American</strong> community (one of California's largest concentrations), significant Black and Hispanic populations, plus white and multiracial residents. Ferry service connects to San Francisco.</p>
+        <p><strong>Key facts:</strong></p>
+        <ul>
+          <li>Filed Chapter 9 bankruptcy 2008 — pension costs for police/fire were unsustainable</li>
+          <li>Crime rates <strong>96% higher</strong> than national average; violent crime <strong>106% higher</strong></li>
+          <li>~40 active gangs with ~1,000 members citywide</li>
+          <li>Substance abuse hospitalizations 2x state average</li>
+          <li>Home to Six Flags Discovery Kingdom</li>
+          <li>Touro University located at Mare Island redevelopment</li>
+        </ul>
+        <div class="city-concern">Crime &amp; public safety · Poverty reduction · Housing costs · Mare Island revitalization · Post-bankruptcy services · Water/sewer infrastructure · Police accountability (Filipino &amp; Black community concerns)</div>
+        <p style="margin-top:10px;"><strong>What Garamendi has done:</strong> Secured $3M for Vallejo Ferry Terminal Reconfiguration (serves 1.2M passengers/year, saves $21M over 20 years). $500K for Vallejo Early Learning Center. $1.09M for Mare Island Sewer Rehabilitation. Advocated for WETA ferry service expansion.</p>
+      </div>
+    </div>
+
+    <!-- Fairfield / Travis AFB -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #c8952a, #92670f);">
+        <span>✈️ Fairfield + Travis AFB <small style="font-weight:400;opacity:0.8;">(~124,000)</small></span>
+        <span style="font-size:12px;">Solano County Seat ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>Character:</strong> Suburban Solano County seat defined by <strong>Travis Air Force Base</strong>. More politically moderate than other district cities — significant Republican and independent voters. Family-oriented, with growing logistics/distribution sectors.</p>
+        <p><strong>Travis AFB facts:</strong></p>
+        <ul>
+          <li>$3.7B annual economic impact to Solano County</li>
+          <li>26,000+ total workforce; largest air mobility wing in U.S. Air Force</li>
+          <li>Primary cargo/passenger air hub for the entire Pacific theater</li>
+          <li>Military families often lean conservative on defense but value Garamendi's Armed Services role</li>
+        </ul>
+        <p><strong>Local economy:</strong> Anheuser-Busch brewery, Jelly Belly candy nearby, growing logistics/distribution. Home to County health systems and government agencies.</p>
+        <div class="city-concern">Travis AFB protection from BRAC · Military family housing &amp; services · Traffic/infrastructure around base · Schools · Moderate suburban development concerns</div>
+        <p style="margin-top:10px;"><strong>What Garamendi has done:</strong> Consistently defends Travis in annual NDAA negotiations. Secured $500K for Fairfield Transit Fleet Electrification (charging infrastructure + electric buses). Secured Solano County 911 radio infrastructure funding.</p>
+      </div>
+    </div>
+
+    <!-- Richmond -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #166534, #14532d);">
+        <span>🏭 Richmond <small style="font-weight:400;opacity:0.8;">(~116,000)</small></span>
+        <span style="font-size:12px;">Industrial · WWII Shipbuilding Legacy ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>Character:</strong> Western Contra Costa industrial city on SF Bay. Historically a WWII shipbuilding powerhouse (Kaiser Shipyards built Liberty Ships here). Now anchored by the Chevron refinery. Has a long, active tradition of environmental justice activism. BART connected.</p>
+        <p><strong>The Chevron tension:</strong> Chevron provides <strong>24% of Richmond's general fund</strong> but is also a major source of air quality complaints. The 2012 Chevron refinery fire — which sent 15,000 people to hospitals — was a defining local event. If Chevron exits California, Richmond faces a fiscal emergency.</p>
+        <p><strong>Demographics:</strong> Predominantly Black and Hispanic; historically lower-income; significant immigrant population in adjacent San Pablo.</p>
+        <ul>
+          <li>BART station connects to Bay Area job centers</li>
+          <li>Richmond Bay Trail — incomplete 18-mile trail from Oakland to Hercules</li>
+          <li>North Richmond Living Levee project (flood protection)</li>
+          <li>One of the more politically progressive constituencies in the district</li>
+        </ul>
+        <div class="city-concern">Environmental justice (Chevron air quality) · Police accountability · Affordable housing · BART access · Economic opportunity for lower-income residents · Chevron fiscal dependency</div>
+        <p style="margin-top:10px;"><strong>What Garamendi has done:</strong> Secured $1.35M for North Richmond Living Levee Phase 1. $250K for Richmond Bay Trail Gap Closure. BART LED lighting upgrades for Richmond station. Championed environmental justice in Energy Committee work.</p>
+      </div>
+    </div>
+
+    <!-- Antioch -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #4f46e5, #3730a3);">
+        <span>🚗 Antioch <small style="font-weight:400;opacity:0.8;">(~115,000)</small></span>
+        <span style="font-size:12px;">East Contra Costa Bedroom Community ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>Character:</strong> Easternmost major district city, sitting on the San Joaquin River where it meets the Delta. The quintessential Bay Area bedroom community — people moved here for affordable housing and pay in commute time.</p>
+        <p><strong>The commute crisis:</strong> <strong>35% of Antioch workers</strong> spend 90+ minutes commuting round-trip to Bay Area jobs. Limited local employment means nearly the entire working population drives or takes transit to jobs outside the city.</p>
+        <ul>
+          <li>Selected for Economic Recovery Corps program (2024)</li>
+          <li>Amtrak Capitol Corridor station — Garamendi has fought to protect it from closure</li>
+          <li>Pittsburg/Bay Point BART serves east Contra Costa</li>
+          <li>Significant gang and crime challenges in certain neighborhoods</li>
+          <li>Growing Latino and working-class population</li>
+        </ul>
+        <div class="city-concern">Commute relief / transit access · Housing affordability · Local job creation · Crime reduction · Amtrak/BART connectivity · Antioch Park &amp; Ride hub</div>
+        <p style="margin-top:10px;"><strong>What Garamendi has done:</strong> Secured $850K for Antioch Park and Ride Shared Mobility Hub (connects 3 bus lines to transit stations). Defended Antioch Amtrak station from proposed closure. Advocated for East Contra Costa economic development.</p>
+      </div>
+    </div>
+
+    <!-- San Pablo -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
+        <span>🌎 San Pablo <small style="font-weight:400;opacity:0.8;">(~32,000)</small></span>
+        <span style="font-size:12px;">Heavily Latino · Immigrant Community ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>Character:</strong> Small, dense, heavily Latino and working-class city — one of the most economically disadvantaged in the Bay Area. Among the most heavily immigrant cities in Contra Costa County.</p>
+        <ul>
+          <li><strong>40.8% foreign-born</strong> — one of the highest rates in the Bay Area</li>
+          <li>Median income substantially below county average</li>
+          <li>Majority Hispanic; significant Central American immigrant community</li>
+          <li>Many residents are undocumented or have mixed-status families</li>
+          <li>BART access via El Cerrito del Norte station nearby</li>
+        </ul>
+        <div class="city-concern">Immigration enforcement / deportation fears · Pathway to citizenship · Affordable housing · Economic opportunity · Healthcare access · Language access to services</div>
+        <p style="margin-top:10px;"><strong>What Garamendi has done:</strong> Advocates for comprehensive immigration reform and agricultural worker visas. Opposed Trump's ICE operations and co-led impeachment resolution against DHS Secretary Noem. Supports DACA protections.</p>
+      </div>
+    </div>
+
+    <!-- El Cerrito & Benicia -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #0891b2, #0e7490);">
+        <span>🏘 El Cerrito &amp; Benicia <small style="font-weight:400;opacity:0.8;">(~27K + ~28K)</small></span>
+        <span style="font-size:12px;">More Affluent Communities ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>El Cerrito:</strong> More affluent, diverse, progressive community. Median income $127,876. Served by two BART stations (El Cerrito del Norte and El Cerrito Plaza). Transit-oriented development happening around BART stations. More liberal-leaning constituency.</p>
+        <p><strong>Garamendi for El Cerrito:</strong> Secured BART LED lighting upgrade (50% electricity reduction, improved safety). El Cerrito Plaza BART TOD Complete Streets — multimodal safety improvements around BART station.</p>
+        <hr>
+        <p><strong>Benicia:</strong> Historic city briefly served as California state capital in 1853–54. More upscale and moderate-conservative leaning within the district. Sits on Carquinez Strait. Major employer: Valero Benicia Refinery. Faces some of the same refinery dependency concerns as Richmond.</p>
+        <div class="city-concern">El Cerrito: BART connectivity · TOD development · Schools<br>Benicia: Valero refinery economic vitality · Property values · Moderate development · Carquinez waterfront</div>
+      </div>
+    </div>
+
+    <!-- Vacaville & Suisun -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">
+        <span>🌄 Vacaville &amp; Suisun City <small style="font-weight:400;opacity:0.8;">(partial / ~29K)</small></span>
+        <span style="font-size:12px;">Inland Solano County ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>Vacaville (partial):</strong> More conservative-leaning suburban Solano County community. Home to California Medical Facility (state prison) — a significant local employer. Also a retail hub (Premium Outlets). Partially in the district after redistricting.</p>
+        <p><strong>Suisun City:</strong> Working-class community adjacent to Fairfield. Located at Suisun Marsh (largest tidal wetland on West Coast). Suisun City waterfront redevelopment has been a local economic development priority.</p>
+        <div class="city-concern">Water supply · Development patterns · Proximity to Travis AFB · Local business climate · Suisun Marsh conservation</div>
+        <p style="margin-top:10px;"><strong>What Garamendi has done:</strong> Secured affordable housing funding for Vacaville in FY2023 appropriations (14 new units at 50-80% AMI). Water and sewer infrastructure funding for Solano communities.</p>
+      </div>
+    </div>
+
+    <!-- Delta Communities -->
+    <div class="city-card" onclick="toggleCity(this)">
+      <div class="city-header" style="background: linear-gradient(135deg, #0f766e, #065f46);">
+        <span>🌊 Delta Communities <small style="font-weight:400;opacity:0.8;">(Rio Vista, Delta Edge)</small></span>
+        <span style="font-size:12px;">Garamendi's Home Turf ▼</span>
+      </div>
+      <div class="city-body">
+        <p><strong>Character:</strong> Rural Sacramento-San Joaquin Delta communities at the edge of the district. This is <em>Garamendi's personal territory</em> — he lives and farms pears in Walnut Grove (just outside district boundaries). Small towns, agriculture, fishing, and recreation define this area.</p>
+        <p><strong>The Delta Tunnel fight:</strong> The proposed Delta Tunnel (California WaterFix, revived as Delta Conveyance Project) would route Sacramento River water through a massive underground tunnel beneath the Delta, bypassing the natural estuary. Delta communities fiercely oppose it, fearing they'll be "sacrificed" for Southern California water interests. Garamendi has called it an "expensive boondoggle" that would "suck the Delta dry."</p>
+        <ul>
+          <li>Pear and asparagus farming; wine grapes; almonds; corn</li>
+          <li>Aging levee infrastructure — flooding risk is existential for communities below sea level</li>
+          <li>Garamendi's SAFE Levee Act would strengthen Delta levees</li>
+        </ul>
+        <div class="city-concern">Delta Tunnel opposition · Levee integrity &amp; flood control · Water rights &amp; agriculture · Drought impacts · Rural services</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== DEMOGRAPHICS ===== -->
+<div id="demographics" class="section">
+  <div class="callout blue"><strong>CA-08 was explicitly designed as a majority-minority district.</strong> The redistricting commission described it as 60% Latino, Asian American, or Black — with the goal of giving communities of color a dominant voting bloc. The district is 29% foreign-born (~218,000 people).</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span> District Race &amp; Ethnicity</div>
+      <div class="chart-wrap"><canvas id="raceChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🌐</span> Language &amp; Immigration</div>
+      <div class="stat-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="stat-box"><div class="num">29%</div><div class="lbl">Foreign-born (~218,000 people)</div></div>
+        <div class="stat-box"><div class="num">26.7%</div><div class="lbl">Speak Spanish at home</div></div>
+        <div class="stat-box"><div class="num">86.9%</div><div class="lbl">Citizens</div></div>
+        <div class="stat-box"><div class="num">$95,876</div><div class="lbl">Median Household Income</div></div>
+      </div>
+      <h4 style="margin-top:16px; color:var(--blue);">Major Immigrant Communities</h4>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Hispanic/Latino (incl. Mexican, Central American)</span><span>Large</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:80%; background:#1a4b8c;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Filipino-American (esp. Vallejo)</span><span>Large</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:65%; background:#c8952a;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>South/East Asian (Chinese, Indian, Vietnamese)</span><span>Significant</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:50%; background:#166534;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Other Asian (Korean, Japanese, Cambodian)</span><span>Present</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:30%; background:#7c3aed;"></div></div>
+      </div>
+      <p style="margin-top:10px; font-size:12px; color:var(--gray);">San Pablo has the highest foreign-born concentration (40.8%). Vallejo has one of California's largest Filipino-American communities — historically tied to the Naval base and healthcare employment.</p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">💼</span> Employment by Sector</div>
+      <div class="chart-wrap"><canvas id="employmentChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🏘</span> Key City Demographics Comparison</div>
+      <div class="chart-wrap"><canvas id="cityChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏙</span> Median Income by City (Approximate)</div>
+    <div style="padding:4px 0;">
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>El Cerrito</span><span style="font-weight:700;color:var(--green);">$127,876</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:90%; background:#166534;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Benicia</span><span style="font-weight:700;color:var(--green);">~$105,000</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:75%; background:#166534;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Fairfield</span><span style="font-weight:700;color:var(--blue);">~$90,000</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:64%; background:#2563a8;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>District Median</span><span style="font-weight:700;color:var(--blue);">$95,876</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:68%; background:#2563a8;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Richmond</span><span style="font-weight:700;color:var(--gold);">~$75,000</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:53%; background:#c8952a;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Antioch</span><span style="font-weight:700;color:var(--gold);">~$72,000</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:51%; background:#c8952a;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>Vallejo</span><span style="font-weight:700;color:var(--red);">~$65,000</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:46%; background:#b91c1c;"></div></div>
+      </div>
+      <div class="demo-bar">
+        <div class="demo-bar-label"><span>San Pablo</span><span style="font-weight:700;color:var(--red);">~$52,000</span></div>
+        <div class="demo-bar-track"><div class="demo-bar-fill" style="width:37%; background:#b91c1c;"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== POLICY POSITIONS ===== -->
+<div id="policy" class="section">
+  <div class="callout gold"><strong>Garamendi's Policy Identity in One Sentence:</strong> "Make It In America" — a blue-collar economic nationalist who supports Medicare for All and the Green New Deal but spends most of his energy on domestic manufacturing, shipbuilding, the Jones Act, and defense readiness.</div>
+
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title"><span class="icon">⚖️</span> Progressive vs. Moderate Spectrum</div>
+      <p style="margin-bottom:14px; font-size:13px; color:var(--gray);">How progressive is he on each issue area? (100 = fully aligned with progressive caucus)</p>
+      <div class="meter-row"><div class="meter-label"><span>Healthcare (Medicare for All co-sponsor)</span><span>92</span></div><div class="meter-track"><div class="meter-fill" style="width:92%; background:var(--blue);"></div></div></div>
+      <div class="meter-row"><div class="meter-label"><span>Climate (Green New Deal co-sponsor)</span><span>85</span></div><div class="meter-track"><div class="meter-fill" style="width:85%; background:var(--blue);"></div></div></div>
+      <div class="meter-row"><div class="meter-label"><span>Labor / Unions</span><span>95</span></div><div class="meter-track"><div class="meter-fill" style="width:95%; background:var(--blue);"></div></div></div>
+      <div class="meter-row"><div class="meter-label"><span>Defense Spending (hawkish but waste-focused)</span><span>60</span></div><div class="meter-track"><div class="meter-fill" style="width:60%; background:var(--gold);"></div></div></div>
+      <div class="meter-row"><div class="meter-label"><span>Trade (economic nationalist / Jones Act)</span><span>50</span></div><div class="meter-track"><div class="meter-fill" style="width:50%; background:var(--gold);"></div></div></div>
+      <div class="meter-row"><div class="meter-label"><span>Immigration (supports reform, some screening)</span><span>65</span></div><div class="meter-track"><div class="meter-fill" style="width:65%; background:var(--gold);"></div></div></div>
+      <div class="meter-row"><div class="meter-label"><span>Anti-Trump opposition (2025–26)</span><span>98</span></div><div class="meter-track"><div class="meter-fill" style="width:98%; background:var(--blue);"></div></div></div>
+      <div class="meter-row"><div class="meter-label"><span>Bipartisan track record</span><span>40</span></div><div class="meter-track"><div class="meter-fill" style="width:40%; background:var(--green);"></div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🔀</span> Where He Diverges from Dem Orthodoxy</div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">🚢 Jones Act / Economic Nationalism <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>His "Make It In America" agenda is more pro-tariff, pro-domestic-manufacturing, and pro-protectionist than most coastal Democrats. He writes bipartisan op-eds in <em>Fox News</em> with Republican senators arguing for domestic shipbuilding. The SHIPS Act was co-introduced with conservative R senators.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">🛡️ Syrian Refugee Vote (2015) <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Voted YES on HR 4038 requiring FBI, DHS, and DNI to individually certify Syrian refugees don't pose a threat — framing it as "strengthening" an already-stringent process. Most progressive Dems voted no. A rare immigration vote that diverged from liberal orthodoxy.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">💣 Sentinel ICBM — Framed as Fiscal Conservatism <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>His opposition to the $141B Sentinel ICBM replacement is unusual — most progressives oppose nuclear weapons on principle. Garamendi's objection is <em>fiscal</em>: it's wasteful and unnecessary. He's not opposed to ICBMs per se, just to this one's cost overruns (37% over budget).</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">🌊 Delta Tunnel — vs. Newsom <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Garamendi has consistently opposed the Delta Conveyance Project (previously WaterFix), which both Gov. Brown and Gov. Newsom supported. He's been willing to publicly fight his own party's governors on this. He calls it a boondoggle that sacrifices Delta communities for Southern California water interests.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">♨️ Geothermal &amp; Energy — Bipartisan Bills <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Co-led the Geothermal Tax Parity Act with conservative Republican Rep. Russ Fulcher of Idaho — extending oil &amp; gas tax provisions to geothermal projects. Wrote a joint op-ed in Fox News with Republican Sen. Mark Kelly on shipbuilding. Genuinely works across the aisle on specific issues.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔑</span> Key Policy Positions by Issue Area</div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🚢 Signature Issue: "Make It In America" — Shipbuilding &amp; Manufacturing <span class="chevron">▼</span></button>
+      <div class="accordion-body">
+        <p>This is the center of Garamendi's legislative identity. His argument: the U.S. has lost its shipbuilding capacity, leaving us dependent on foreign-built vessels for trade and vulnerable in military logistics. He wants to restore it through the Jones Act (requiring U.S.-built, flagged, crewed ships for domestic shipping) and new legislation.</p>
+        <ul>
+          <li><strong>SHIPS for America Act:</strong> Bipartisan (with Sen. Kelly D-AZ, Sen. Young R-IN, Rep. Kelly R-MS) — requires increasing % of LNG/crude exports on U.S. vessels; goal of 250 new ships over 10 years</li>
+          <li><strong>Made in America Act:</strong> Co-introduced with Sen. Tammy Baldwin (D-WI) and Sen. Mike Braun (R-IN) to strengthen Buy America requirements for all federally funded infrastructure</li>
+          <li><strong>Ferry Service Expansion Act:</strong> Zero-emission American-built ferries</li>
+          <li>Proposed returning shipbuilding to Mare Island in Vallejo — local jobs angle</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🛡️ Defense: Readiness Hawk, Anti-Waste <span class="chevron">▼</span></button>
+      <div class="accordion-body">
+        <ul>
+          <li>Ranking Member, Armed Services Readiness Subcommittee — focuses on military readiness, not weapons proliferation</li>
+          <li>Opposes Sentinel ICBM ($141B, 37% cost overrun) — but NOT on pacifist grounds; frames as waste</li>
+          <li>Co-chairs Congressional Nuclear Weapons and Arms Control Working Group</li>
+          <li>Voted NO on FY26 NDAA — opposed Trump using military for deportations and domestic policing</li>
+          <li>Introduced War Powers Resolution (2026) to halt Trump's Iran military action</li>
+          <li>Once cast the <em>sole</em> "no" vote on a $553B military funding bill; introduced amendment to withdraw 90% of troops from Afghanistan in 2013</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">💧 Water: Delta Tunnel Opposition, Levees <span class="chevron">▼</span></button>
+      <div class="accordion-body">
+        <p>One of his most consistent and locally distinctive positions. Proposes "Little Sip, Big Gulp: A Water Plan for All of California" as an alternative — emphasizing conservation, storage, and recycling rather than a massive tunnel.</p>
+        <p>His SAFE Levee Act would strengthen Sacramento-San Joaquin Delta levees — personally motivated as a Delta pear farmer.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🏠 Housing: HOME Act — Senate Passed 89-10 <span class="chevron">▼</span></button>
+      <div class="accordion-body">
+        <p>His HOME Investment Partnerships Reauthorization legislation was incorporated into the bipartisan 21st Century ROAD to Housing Act, which passed the Senate 89-10 in 2026. It authorizes $5B in HOME funding for FY2024, growing 5% annually through 2028. Improves downpayment assistance, supports Community Land Trusts.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🏥 Healthcare: Medicare for All Co-Sponsor <span class="chevron">▼</span></button>
+      <div class="accordion-body">
+        <p>Co-sponsored the Medicare for All Act (2021). Consistent supporter of the ACA and expansion of public health coverage. Heavily constituent-service oriented on healthcare issues given his district's high immigrant population and underserved communities.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🌍 Immigration: Reform Supporter, Occasional Divergence <span class="chevron">▼</span></button>
+      <div class="accordion-body">
+        <ul>
+          <li>Supports comprehensive immigration reform with pathway to citizenship</li>
+          <li>Supports DACA and agricultural worker visa programs</li>
+          <li>Opposed Trump's ICE enforcement operations in 2025-26</li>
+          <li>Co-led resolution to impeach DHS Secretary Kristi Noem over ICE operations</li>
+          <li>BUT: Voted for tighter Syrian refugee screening (2015) and has expressed support for E-Verify enforcement</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🌿 Climate: Green New Deal Co-Sponsor, Geothermal Pragmatist <span class="chevron">▼</span></button>
+      <div class="accordion-body">
+        <ul>
+          <li>Co-sponsored Green New Deal resolution</li>
+          <li>Led Geothermal Tax Parity Act (2025) — bipartisan, extends oil/gas tax provisions to geothermal</li>
+          <li>Championed electric bus and transit fleet electrification funding for the district</li>
+          <li>Richmond Bay Trail and living levee projects as climate resilience investments</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BILLS & FUNDING ===== -->
+<div id="legislation" class="section">
+
+  <div class="card">
+    <div class="card-title"><span class="icon">💰</span> Federal Funding Secured for the District</div>
+    <table>
+      <thead><tr><th>Project</th><th>Location</th><th>Amount</th><th>Year</th></tr></thead>
+      <tbody>
+        <tr><td>Travis AFB Access Road Safety &amp; Canon Road Improvements (4-lane arterial, bike lanes, sidewalks)</td><td>Fairfield / Travis AFB</td><td class="amt">$4,000,000</td><td>FY23</td></tr>
+        <tr><td>Stevenson Bridge Rehabilitation (Putah Creek)</td><td>Solano/Yolo Counties</td><td class="amt">$3,387,619</td><td>FY23</td></tr>
+        <tr><td>Vallejo Ferry Terminal Reconfiguration (WETA) — saves $21M over 20 yrs, serves 1.2M riders/yr</td><td>Vallejo</td><td class="amt">$3,000,000</td><td>FY24</td></tr>
+        <tr><td>SolTrans Electric Buses (joint with Rep. Thompson)</td><td>Solano County</td><td class="amt">$2,000,000</td><td>FY26</td></tr>
+        <tr><td>North Richmond Living Levee Phase 1 (flood protection, disadvantaged communities)</td><td>Richmond</td><td class="amt">$1,350,000</td><td>FY26</td></tr>
+        <tr><td>Mare Island Sewer Rehabilitation (pipes serving 180,000+ residents, most 60+ yrs old)</td><td>Vallejo</td><td class="amt">$1,092,000</td><td>FY26</td></tr>
+        <tr><td>Antioch Park &amp; Ride Shared Mobility Hub (connects 3 bus lines)</td><td>Antioch</td><td class="amt">$850,000</td><td>FY24</td></tr>
+        <tr><td>Solano County 911 Dispatch Radio Infrastructure</td><td>Solano County</td><td class="amt">$637,195</td><td>FY26</td></tr>
+        <tr><td>Vallejo Early Learning Center (childcare for working families)</td><td>Vallejo</td><td class="amt">$500,000</td><td>FY24</td></tr>
+        <tr><td>Fairfield Transit Fleet Electrification (2 electric buses + charging infra)</td><td>Fairfield</td><td class="amt">$500,000</td><td>FY24</td></tr>
+        <tr><td>Richmond Bay Trail Gap Closure (completes 18-mile Oakland-to-Hercules trail)</td><td>Richmond</td><td class="amt">$250,000</td><td>FY26</td></tr>
+        <tr><td>Affordable Housing — new units at 50-80% AMI</td><td>Vacaville</td><td class="amt">$25,000</td><td>FY23</td></tr>
+        <tr><td>BART LED Lighting (El Cerrito Plaza, Richmond, Pittsburg/Bay Point)</td><td>District-wide</td><td class="amt">CPF</td><td>FY24</td></tr>
+        <tr><td>El Cerrito Plaza BART TOD Complete Streets</td><td>El Cerrito</td><td class="amt">CPF</td><td>FY26</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px; font-size:12px; color:var(--gray);">In January 2026 alone, secured $6.5M+ in FY26 appropriations (bill passed House 341-88). Total FY26 community project funding across two bills: $13M+ for Solano and Contra Costa Counties.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📜</span> Key Legislation</div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🚢 SHIPS for America Act — Signature Bipartisan Shipbuilding Bill <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Requires increasing percentages of LNG and crude oil exports to be transported on U.S.-built, flagged, and crewed vessels. Goal: expand the U.S.-flagged commercial fleet by 250 ships over 10 years. Bipartisan — co-introduced with Sen. Mark Kelly (D-AZ), Sen. Todd Young (R-IN), Rep. Trent Kelly (R-MS). Re-introduced in 2025 following Trump's "Make American Ships Again" executive order.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🏠 21st Century ROAD to Housing Act — Senate Passed 89-10 <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Garamendi's HOME Investment Partnerships Reauthorization (first reauth since 1994) was incorporated into this bipartisan housing bill. Authorizes $5B for FY2024, 5% annual growth through 2028. Improves downpayment assistance, supports Community Land Trusts, helps nonprofits access HOME funds. Passed Senate 89-10 in April 2026.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🏭 Made in America Act — Buy America for All Infrastructure <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Co-introduced with Sen. Tammy Baldwin (D-WI) and Sen. Mike Braun (R-IN) to strengthen Buy America requirements for ALL federally funded infrastructure projects — not just select categories.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">♻️ Geothermal Tax Parity Act of 2025 — Bipartisan Clean Energy <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Bipartisan bill with Reps. Celeste Maloy (R-UT), Blake Moore (R-UT), Steven Horsford (D-NV), and Russ Fulcher (R-ID) to extend oil and gas tax provisions to geothermal projects — making them economically competitive. A practical energy transition bill with genuine conservative support.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">💣 Investing in Commonsense Ballistic Missiles (ICBM) Act <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Introduced 2021 (with updates through 2024) to delay the Sentinel ICBM program to 2031 and extend the life of Minuteman III. The Sentinel program has ballooned 37% over budget to ~$141B. Worked with Sen. Elizabeth Warren to press the Air Force. After Pentagon decided to continue despite overruns, Garamendi called it "wasteful and deeply disappointing."</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">⚡ Ferry Service Expansion Act <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Would increase federal funding for public ferry service and enable zero-emission American-built ferry construction — directly benefiting Vallejo's WETA ferry service to San Francisco.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">🌊 SAFE Levee Act <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Legislation to strengthen Sacramento-San Joaquin Delta levees against flood risk. Personally motivated — Garamendi is a Delta pear farmer whose community is below sea level and threatened by aging levee infrastructure.</p></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">⚔️ Iran War Powers Resolution (2026) <span class="chevron">▼</span></button>
+      <div class="accordion-body"><p>Co-led with Rep. DeSaulnier to halt Trump's Iran military operations, calling them unauthorized by Congress. Part of a broader pattern of invoking War Powers Act against executive overreach.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NEWS ===== -->
+<div id="news" class="section">
+  <div class="card">
+    <div class="card-title"><span class="icon">📰</span> Recent News &amp; Notable Moments</div>
+
+    <div class="news-item">
+      <div class="news-date">Apr 2026</div>
+      <div class="news-content">
+        <h4>HOME Housing Act Passes Senate 89-10</h4>
+        <p>His HOME Investment Partnerships legislation incorporated into 21st Century ROAD to Housing Act — rare major bipartisan housing win. Authorizes $5B annually, first reauthorization since 1994.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Mar 2026</div>
+      <div class="news-content">
+        <h4>Iran War Powers Resolution</h4>
+        <p>Introduced resolution with Rep. DeSaulnier to halt Trump's Iran military action. Joined 100+ Democrats cosponsoring resolution to impeach DHS Secretary Kristi Noem over ICE operations. Signed amicus brief demanding SCOTUS overturn Trump's tariffs.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Feb 2026</div>
+      <div class="news-content">
+        <h4>$13M for Solano &amp; Contra Costa Counties</h4>
+        <p>Secured total $13M in community project funding for the district across two appropriations measures — Mare Island sewers, living levee, SolTrans electric buses, 911 radio infrastructure.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Jan 2026</div>
+      <div class="news-content">
+        <h4>$6.5M+ in FY26 Community Projects</h4>
+        <p>Secured $6.5M+ in appropriations bill that passed House 341-88 (bipartisan). Running for reelection in 2026 against Rudy Recile (R), Nicolas Carjuzaa, and Aaron Rowden.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025</div>
+      <div class="news-content">
+        <h4>SHIPS for America Act Re-introduced</h4>
+        <p>Re-introduced bipartisan SHIPS Act after Trump's "Make American Ships Again" executive order — an unusual moment where Trump's executive action aligned with Garamendi's long-standing legislative agenda. Geothermal Tax Parity Act introduced with bipartisan House coalition.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2025</div>
+      <div class="news-content">
+        <h4>Voted NO on FY26 NDAA; Called "Big Ugly Bill" the Biggest Theft in U.S. History</h4>
+        <p>Voted against the FY26 NDAA over Trump using military for deportations and domestic policing. Called Trump's budget reconciliation package "the biggest theft in U.S. history." Full opposition to Trump agenda.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Jul 2024</div>
+      <div class="news-content">
+        <h4>Multiple Myeloma Diagnosis — Public Disclosure</h4>
+        <p>Publicly announced early-stage multiple myeloma (blood cancer) diagnosis. Announced chemo-immunotherapy treatment at Kaiser Oncology Sacramento. Expressed confidence in remission. Received bipartisan support, including from Armed Services Ranking Member Adam Smith. Continued working through treatment; running for 2026 reelection.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2024</div>
+      <div class="news-content">
+        <h4>Sentinel ICBM — Pentagon Overrides Objections</h4>
+        <p>After the Pentagon decided to continue the Sentinel ICBM program despite $141B cost and 37% overrun, Garamendi called it "deeply disappointing" and "wasteful." Worked jointly with Sen. Elizabeth Warren to press the Air Force on mismanagement.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">2024</div>
+      <div class="news-content">
+        <h4>Won Reelection with 77% in March Primary</h4>
+        <p>Won the March 2024 primary with 77% of the vote; defeated Republican Rudy Recile in the general. District is D+24 — safely Democratic.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> Ongoing Issues to Watch</div>
+    <div class="grid-2">
+      <div class="callout red"><strong>Chevron Richmond Exit Risk</strong><p>If California regulations push Chevron to exit, Richmond loses 24% of its general fund. A slow-moving fiscal crisis with no easy answer.</p></div>
+      <div class="callout gold"><strong>2026 Reelection + Health</strong><p>Running for reelection while undergoing multiple myeloma treatment. His age (80) and health are politically relevant. District is safe (D+24) but challengers include a Republican rematch.</p></div>
+      <div class="callout blue"><strong>Delta Tunnel Fight Continues</strong><p>Gov. Newsom's Delta Conveyance Project moves forward over Garamendi's objections. A defining ongoing fight between him and Democratic state leadership.</p></div>
+      <div class="callout blue"><strong>Travis AFB BRAC Watch</strong><p>Any Defense Base Realignment and Closure (BRAC) process would threaten Travis — Garamendi's Armed Services role is the district's primary insurance policy.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INTERVIEW TIPS ===== -->
+<div id="interview" class="section">
+
+  <div class="tip-card">
+    <h3>💡 How to Think About This Interview</h3>
+    <p>A Staff Assistant role in a congressional office is constituent-facing: answering phones, routing casework, helping people with federal agencies (Social Security, VA, immigration, etc.), and supporting constituent events. Your job knowledge needs to be local and practical — know the district, know the issues constituents actually call about, know what the Member stands for. Show you understand the community, not just the legislation.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span> Key Talking Points to Know Cold</div>
+      <ul>
+        <li><strong>"Make It In America"</strong> — his signature domestic manufacturing identity; SHIPS Act, Jones Act, Buy America</li>
+        <li><strong>Travis Air Force Base</strong> — $3.7B economic impact; largest air mobility wing; Garamendi protects it in every NDAA</li>
+        <li><strong>Sentinel ICBM opposition</strong> — fiscal waste argument, not pacifism; $141B cost, 37% overrun</li>
+        <li><strong>Delta Tunnel opposition</strong> — "suck the Delta dry"; personal stake as a Delta pear farmer</li>
+        <li><strong>CA-08 demographics</strong> — 60% minority; 29% foreign-born; Filipino community in Vallejo; large Latino immigrant community</li>
+        <li><strong>Committee roles</strong> — Armed Services (Readiness) + Transportation &amp; Infrastructure (maritime &amp; transit)</li>
+        <li><strong>District was created in 2022 redistricting</strong> — Garamendi lives outside it (Walnut Grove farm)</li>
+        <li><strong>Multiple myeloma</strong> — disclosed July 2024; continuing treatment; running for 2026 reelection</li>
+        <li><strong>HOME Act</strong> — housing legislation passed Senate 89-10 in 2026; first HOME reauth since 1994</li>
+        <li><strong>Vallejo</strong> — largest city, bankruptcy legacy, crime, Filipino community, WETA ferry</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">❓</span> Likely Interview Questions &amp; Angles</div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">"Why do you want to work for Rep. Garamendi?" <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Connect to something specific: his "Make It In America" manufacturing agenda, his protection of Travis AFB, his advocacy for Delta communities, his work for Vallejo's revitalization. Don't be vague — cite a specific bill or funding win you found meaningful.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">"What do you know about the district?" <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Mention: the 2022 redistricting created it as a majority-minority district; the two counties (Contra Costa + Solano); Travis AFB as economic anchor; Chevron Richmond's fiscal importance to Richmond; Vallejo's bankruptcy recovery; the Filipino community in Vallejo; the extreme commutes from Antioch. Show you've thought about geographic diversity.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">"What issues do you think constituents care most about?" <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Crime and public safety (Vallejo, Antioch); commute relief and transit (east county); immigration enforcement and immigrant rights (San Pablo, Richmond); Travis AFB economic stability (Fairfield); housing affordability; Chevron's economic role in Richmond; Delta water policy. Show geographic nuance — different areas have different priorities.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">"Tell me about a federal casework issue a constituent might call about." <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Common casework: Social Security delays, VA benefits, passport issues, immigration status inquiries (USCIS, green cards, DACA), Medicare/Medicaid enrollment, SBA loans, federal agency disputes. Show you understand what a congressional office actually does day-to-day.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">"What's the biggest challenge facing the district?" <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>Strong answer: "The district has real economic resilience — Travis AFB, ferry connections, BART access — but it faces a Chevron dependency problem in Richmond that has no easy solution, and a commute crisis in East Contra Costa that requires real transit investment. The communities that moved to Antioch and Pittsburg for affordable housing need local jobs and transit so they're not spending three hours a day commuting." Or: Vallejo's post-bankruptcy recovery and crime. Pick the one you can speak to most specifically.</p></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">"What does Rep. Garamendi stand for?" <span class="chevron">▼</span></button>
+        <div class="accordion-body"><p>"He's been in public service for 50 years and his core identity is economic nationalism for working people — 'Make It In America.' He believes the U.S. has to rebuild its manufacturing and shipbuilding base to protect both workers and national security. Locally, he's protected Travis AFB, fought for Vallejo's ferry service, opposed the Delta Tunnel, and secured millions for transit and flood protection. He's pragmatic and bipartisan when it serves those goals."</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <h3>📋 Constituent Communities to Know</h3>
+    <ul>
+      <li><strong>Filipino-American community in Vallejo</strong> — one of California's largest concentrations; Pacific policy and immigrant rights issues</li>
+      <li><strong>Latino/immigrant community in San Pablo, Richmond</strong> — 40%+ foreign-born; immigration enforcement fears; mixed-status families</li>
+      <li><strong>Military families at Travis AFB</strong> — care about base security, BRAC, military pay and benefits</li>
+      <li><strong>East Contra Costa commuters (Antioch, Pittsburg)</strong> — transit access, housing affordability, local job creation</li>
+      <li><strong>Black community in Richmond and Vallejo</strong> — police accountability, economic opportunity, environmental justice</li>
+      <li><strong>Delta farmers and rural communities</strong> — water rights, levee integrity, Delta Tunnel opposition</li>
+      <li><strong>Environmental justice advocates in Richmond</strong> — Chevron air quality, refinery accountability</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">✅</span> Quick-Reference Flash Cards</div>
+    <div class="grid-3">
+      <div style="background:var(--blue-pale); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">80</div>
+        <div style="font-size:12px; font-weight:600; color:var(--blue);">Garamendi's Age</div>
+        <div style="font-size:11px; color:var(--gray);">Born Jan 24, 1945 in Florida; raised in CA foothills</div>
+      </div>
+      <div style="background:var(--gold-light); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">D+24</div>
+        <div style="font-size:12px; font-weight:600; color:#92670f;">Cook PVI</div>
+        <div style="font-size:11px; color:var(--gray);">Safely Democratic; won 2024 primary with 77%</div>
+      </div>
+      <div style="background:var(--green-light); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">$3.7B</div>
+        <div style="font-size:12px; font-weight:600; color:var(--green);">Travis AFB Impact</div>
+        <div style="font-size:11px; color:var(--gray);">Annual economic impact to Solano County</div>
+      </div>
+      <div style="background:var(--blue-pale); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">29%</div>
+        <div style="font-size:12px; font-weight:600; color:var(--blue);">Foreign-Born</div>
+        <div style="font-size:11px; color:var(--gray);">~218,000 foreign-born residents in district</div>
+      </div>
+      <div style="background:#fee2e2; border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">24%</div>
+        <div style="font-size:12px; font-weight:600; color:var(--red);">Richmond Budget Risk</div>
+        <div style="font-size:11px; color:var(--gray);">% of Richmond's general fund from Chevron</div>
+      </div>
+      <div style="background:var(--green-light); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">$13M+</div>
+        <div style="font-size:12px; font-weight:600; color:var(--green);">FY26 Community Projects</div>
+        <div style="font-size:11px; color:var(--gray);">Secured for district in early 2026</div>
+      </div>
+      <div style="background:var(--blue-pale); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">2009</div>
+        <div style="font-size:12px; font-weight:600; color:var(--blue);">Entered Congress</div>
+        <div style="font-size:11px; color:var(--gray);">Won special election; 8th term in 119th Congress</div>
+      </div>
+      <div style="background:var(--gold-light); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">$141B</div>
+        <div style="font-size:12px; font-weight:600; color:#92670f;">Sentinel ICBM Cost</div>
+        <div style="font-size:11px; color:var(--gray);">37% cost overrun; Garamendi's signature spending fight</div>
+      </div>
+      <div style="background:var(--green-light); border-radius:10px; padding:14px; text-align:center;">
+        <div style="font-size:22px;">89-10</div>
+        <div style="font-size:12px; font-weight:600; color:var(--green);">Senate Vote on HOME Act</div>
+        <div style="font-size:11px; color:var(--gray);">His housing legislation passed Senate, Apr 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">⚠️</span> Things NOT to Get Wrong</div>
+    <ul>
+      <li><strong>He lives outside the district</strong> — Garamendi's farm is in Walnut Grove, Sacramento County, not in CA-08</li>
+      <li><strong>He's in CA-08, NOT CA-10</strong> — he represented CA-10 before 2022 redistricting</li>
+      <li><strong>He's 80, not 70</strong> — his age and health (multiple myeloma diagnosis July 2024) are relevant context</li>
+      <li><strong>His ICBM opposition is fiscal, not pacifist</strong> — he supports a strong military but opposes wasteful programs</li>
+      <li><strong>The Delta Tunnel fight is personal for him</strong> — he's a Delta pear farmer; don't be surprised if he's passionate about it</li>
+      <li><strong>Largest city = Vallejo, not Richmond or Fairfield</strong> — easy to confuse; Vallejo ~126K, Richmond ~116K, Fairfield ~124K</li>
+      <li><strong>He has genuine bipartisan credentials</strong> — SHIPS Act, Geothermal Act, Made in America Act all have Republican co-sponsors; he's not purely a progressive warrior</li>
+    </ul>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ===== ACCORDION =====
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  // close all in same parent
+  const parent = btn.closest('.card') || document.body;
+  parent.querySelectorAll('.accordion-btn.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+// ===== CITY CARDS =====
+function toggleCity(card) {
+  const body = card.querySelector('.city-body');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.city-body.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) body.classList.add('open');
+}
+
+// ===== CHARTS =====
+window.addEventListener('load', () => {
+  // Race/Ethnicity Chart
+  const raceCtx = document.getElementById('raceChart');
+  if (raceCtx) {
+    new Chart(raceCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Hispanic/Latino', 'White (non-Hispanic)', 'Asian', 'Black/African American', 'Multiracial/Other'],
+        datasets: [{
+          data: [36, 24, 18, 15, 7],
+          backgroundColor: ['#1a4b8c','#c8952a','#166534','#b91c1c','#7c3aed'],
+          borderWidth: 2, borderColor: '#fff'
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'right', labels: { font: { size: 11 }, padding: 10 } },
+          tooltip: { callbacks: { label: (c) => ` ${c.label}: ${c.parsed}%` } }
+        }
+      }
+    });
+  }
+
+  // Employment Chart
+  const empCtx = document.getElementById('employmentChart');
+  if (empCtx) {
+    new Chart(empCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Healthcare & Social', 'Retail Trade', 'Manufacturing', 'Education', 'Construction', 'Professional/Tech', 'Transportation'],
+        datasets: [{
+          label: 'Workers',
+          data: [55971, 40329, 28000, 25000, 22000, 18500, 16000],
+          backgroundColor: '#1a4b8c'
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0)+'K' : v, font: { size: 10 } } },
+          x: { ticks: { font: { size: 9 }, maxRotation: 35 } }
+        }
+      }
+    });
+  }
+
+  // City Comparison Chart
+  const cityCtx = document.getElementById('cityChart');
+  if (cityCtx) {
+    new Chart(cityCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Vallejo', 'Fairfield', 'Richmond', 'Antioch', 'Pittsburg', 'San Pablo', 'El Cerrito', 'Benicia'],
+        datasets: [
+          { label: 'Population (K)', data: [126, 124, 116, 115, 75, 32, 27, 28], backgroundColor: '#1a4b8c' },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { ticks: { callback: v => v + 'K', font: { size: 10 } } },
+          x: { ticks: { font: { size: 9 }, maxRotation: 35 } }
+        }
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
